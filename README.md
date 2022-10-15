@@ -48,3 +48,21 @@ EXPOSE qui permet de définir les ports d'écoute par défaut ;
 VOLUME qui permet de définir les volumes utilisables ;
 
 CMD qui permet de définir la commande par défaut lors de l’exécution de vos conteneurs Docker.
+***********************************************************************************************
+docker tag image_name:latest YOUR_USERNAME/image_name:latest  . 
+Celle-ci va créer un lien entre notre image ocr-docker-build:latest créée précédemment et l'image que nous voulons envoyer sur le Docker Hub YOUR_USERNAME/ocr-docker-build:latest
+Si le conteneur que vous utilisez n'a pas de nom, utilisez son id de conteneur, que vous pouvez récupérer en retour de la commande  docker build  .
+➜ docker tag id_du_conteneur openclassrooms/ocr-docker-build:
+Vous pouvez maintenant exécuter la dernière commande nécessaire pour envoyer votre image vers le Docker Hub. Pour cela, vous allez exécuter la commande docker push YOUR_USERNAME/ocr-docker-build:latest
+*************************************************************************************************
+chercher une image docker search image_name
+**************************************************************************************************
+Voici une manière fonctionnelle d'écrire votre Dockerfile afin de créer une image démarrant de  openclassrooms/build_image  :
+
+FROM openclassrooms/build_image
+
+RUN apt-get update \
+&& apt-get upgrade -y \
+&& apt-get install nginx -y
+Ensuite, construisez l'image grâce à la commande  docker build -t image_perso . 
+. Puis, lancez le conteneur avec  docker run image_perso
