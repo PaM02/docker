@@ -66,3 +66,36 @@ RUN apt-get update \
 && apt-get install nginx -y
 Ensuite, construisez l'image grâce à la commande  docker build -t image_perso . 
 . Puis, lancez le conteneur avec  docker run image_perso
+************************************************************************************************
+récupérer l'ensemble des images décrites dans votre fichier docker-compose.yml et les télécharger depuis le Docker Hub, vous devez faire un docker-compose pull  . Du côté de Docker, la commande serait un docker pull
+Démarrer une stack Docker Compose
+Si vous souhaitez lancer la création de l'ensemble des conteneurs, vous devez lancer la commande docker-compose up (pour rappel, vous faites un docker run pour lancer un seul conteneur). Vous pouvez ajouter l’argument -d pour faire tourner les conteneurs en tâche de fond.
+
+Voir le statut d'une stack Docker Compose
+Après avoir démarré une stack Docker Compose, vous aurez certainement besoin de voir si l'ensemble des conteneurs sont bien dans un état fonctionnel, et prêts à rendre un service.
+
+Pour cela, vous allez utiliser la commande docker-compose ps qui vous affichera le retour suivant
+
+Votre stack Docker Compose est maintenant fonctionnelle, et l'ensemble des services répondent bien ; mais vous pourriez avoir besoin de voir les logs de vos conteneurs. Pour cela, vous devez utiliser la commande docker-compose logs -f --tail 5
+Celle-ci permet de voir l'ensemble des logs sur les différents conteneurs de façon continue, tout en limitant l'affichage aux 5 premières lignes
+
+Si vous souhaitez arrêter une stack Docker Compose, vous devez utiliser la commande docker-compose stop  . Cependant, celle-ci ne supprimera pas les différentes ressources créées par votre stack.
+
+Ainsi, si vous lancez à nouveau un docker-compose up -d  , l'ensemble de votre stack sera tout de suite à nouveau fonctionnel
+
+Si vous souhaitez supprimer l'ensemble de la stack Docker Compose, vous devez utiliser la commande docker-compose down qui détruira l'ensemble des ressources créées.
+
+Valider une stack Docker Compose
+Lors de l'écriture d'un fichier docker-compose, nous ne sommes pas à l’abri d'une erreur. Pour éviter au maximum cela, vous devez utiliser la commande docker-compose config qui vous permettra de valider la syntaxe de votre fichier, et ainsi d'être certain de son bon fonctionnement
+
+docker-compose up -d vous permettra de démarrer l'ensemble des conteneurs en arrière-plan ;
+
+docker-compose ps vous permettra de voir le statut de l'ensemble de votre stack ;
+
+docker-compose logs -f --tail 5 vous permettra d'afficher les logs de votre stack ;
+
+docker-compose stop vous permettra d'arrêter l'ensemble des services d'une stack ;
+
+docker-compose down vous permettra de détruire l'ensemble des ressources d'une stack ;
+
+docker-compose config vous permettra de valider la syntaxe de votre fichier docker-compose.yml  .
