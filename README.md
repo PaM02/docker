@@ -10,32 +10,15 @@ docker run -d -p 8080:80 nginx
 -d 	pour détacher le conteneur du processus principal de la console. 
 	Il vous permet de continuer à utiliser la console pendant que votre conteneur tourne sur un autre processus ;
 Vous pourriez aussi avoir besoin de "rentrer" dans votre conteneur Docker pour pouvoir y effectuer des actions. Pour cela,
- vous devez utiliser la commande docker exec -ti ID_RETOURNÉ_LORS_DU_DOCKER_RUN bash  . Dans cette commande, 
+ vous devez utiliser la commande 
+ docker exec -ti ID_RETOURNÉ_LORS_DU_DOCKER_RUN bash  . Dans cette commande, 
 l'argument -ti permet d'avoir un shell bash pleinement opérationnel. Une fois que vous êtes dans votre conteneur, 
 vous pouvez vous rendre, via la commande cd /usr/share/nginx/html  , dans le répertoire où se trouve le fichier index.html , 
 pour modifier son contenu et voir le résultat en direct à l'adresse http://127.0.0.1:8080
 docker stop CONTAINER_ID: pour stopper un conteneur
  docker rm ID_RETOURNÉ_LORS_DU_DOCKER_RUN: Celle-ci va détruire le conteneur et son contenu ;
 docker system prune: faire le menage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*********************************************************************************************************
 La première chose que vous devez faire est de créer un fichier nommé "Dockerfile", puis de définir dans celui-ci l'image que vous allez utiliser comme base, grâce à l'instruction FROM  . Dans notre cas, nous allons utiliser une image de base Debian 9.
 L'instruction FROM n'est utilisable qu'une seule fois dans un Dockerfile.
 Ensuite, utilisez l'instruction RUN pour exécuter une commande dans votre conteneur.
